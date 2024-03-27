@@ -139,6 +139,36 @@ characters of weeknights, when `(.*).*` is matched against `abc` then the
 parenthesized subexpression matches all three characters, and when `(a*)*` is
 matched against `bc` both the whole RE and the parenthesized subexpression match
 the null string.
+
+If case-independent matching is specified, the effect is much as if all case
+distinctions had vanished from the alphabet. When an alphabetic that exists in
+multiple cases appears as an ordinary character outside a bracket expression, it
+is effectively transformed into a bracket expression containing both cases, for
+example, `x` becomes `[xX]`. When it appears inside a bracket expression, all
+case counterparts of it are added to the bracket expression, so that, for
+example, `[x]` becomes `[xX]` and `[^x]` becomes `[^xX]`.
+
+No particular limit is imposed on the length of REs. Programs intended to be
+portable should not try to employ REs longer than 256 bytes, as an
+implementation can refuse to accept such REs and remain POSIX-compliant.
+
+Obsolete ("basic") regular expressions differ in several respects. `|`, `+`, and
+`?` are ordinary characters and there is no equivalent for their functionality.
+The delimiters for bounds are `\{` and `\}`, with `{` and `}` by themselves
+ordinary characters. The parentheses for nested subexpressions are `\(` and
+`\)`, with `(` and `)` by themselves ordinary characters. `^` is an ordinary
+character except at the beginning of the RE or the beginning of a parenthesized
+subexpression, `$` is an ordinary character except at the end of the RE or the
+end of a parenthesized subexpression, and `*` is an ordinary character if it
+appears at the beginning of the RE or the beginning of a parenthesized
+subexpression (after a possible leading `^`).
+
+Finally, there is one new type of atom, a back reference: `\` followed by a
+nonzero decimal digit **d** matches the same sequence of characters matched by
+the __d*th*__ parenthesized subexpression (numbering subexpressions by the
+positions of their opening parentheses, left to right), so that, for example,
+`\([bc]\)\1` matches `bb` or `cc`, but not `bc`.
+
 #### Collating Element
 
 A collating element is:
