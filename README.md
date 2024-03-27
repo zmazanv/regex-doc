@@ -1,7 +1,7 @@
 # POSIX.2 Regular Expressions
 
-This is a compilation of the **POSIX.2 Regular Expressions manual page** *(7 regex)*
-in an easier to read format.
+This is a compilation of the **POSIX.2 Regular Expressions manual page** *(7
+regex)* in an easier to read format.
 
 ## Regular Expression
 
@@ -36,3 +36,22 @@ sequence of exactly `i` matches of the atom.
 
 An atom followed by a bound containing two integers `i` and `j` matches a
 sequence of `i` through `j` inclusively matches of the atom.
+
+### Atom
+
+An atom is:
+
+- **A regular expression enclosed in `()`** matching a match for the regular
+  expression.
+- **An empty set of `()`** matching the null string.
+- **A bracket expression**.
+- **`.`** matching any single character.
+- **`^`** matching the null string at the beginning of a line.
+- **`$`** matching the null string at the end of a line.
+- **`\` followed by one of the characters: `^ . [ $ ( ) | * + ? { \`** matching
+  that character taken as an ordinary character.
+- **`\` followed by any other character** matching that character taken as an
+  ordinary character, as if the `\` had not been present.
+- **A single character with no other significance** matching that character.
+- **`{` followed by a character other than a digit** is an ordinary character,
+  not the beginning of a bound.
