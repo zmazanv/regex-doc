@@ -55,3 +55,11 @@ An atom is:
 - **A single character with no other significance** matching that character.
 - **`{` followed by a character other than a digit** is an ordinary character,
   not the beginning of a bound.
+
+#### Collating Element
+
+A collating element is:
+
+- A character.
+- A multicharacter sequence that collates as if it were a single character.
+- A collating-sequence name for either.
