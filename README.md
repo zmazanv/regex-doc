@@ -60,8 +60,12 @@ An atom is:
 
 A bracket expression is a list of characters enclosed in `[]`.
 
+#### Negation
+
 It normally matches any single character from the list. If the list begins with
 `^`, it matches any single character not from the rest of the list.
+
+#### Range
 
 If two characters in the list are separated by `-`, this is shorthand for the
 full range of characters between those two inclusively in the collating
@@ -69,10 +73,12 @@ sequence. It is illegal for two ranges to share an endpoint. Ranges are very
 collating-sequence-dependent, and portable programs should avoid relying on
 them.
 
-- Examples:
+Examples:
 
-  - `[0-9]`: In ASCII matches any decimal digit.
-  - `[a-c-e]`: Illegal because of the shared endpoint between ranges.
+- `[0-9]`: In ASCII matches any decimal digit.
+- `[a-c-e]`: Illegal because of the shared endpoint between ranges.
+
+#### Literals
 
 - **To include a literal `]`** in the list, make it the first character,
   following a possible `^`.
@@ -83,9 +89,9 @@ them.
 - **To use a literal `-` as the first endpoint of a range**, enclose it in `[.`
   and `.]` to make it a collating element.
 
-- With the exception of these and some combinations using `[`, **all other
-  special characters, including `\`**, losing their special significance within a
-  bracket expression.
+- **All other special characters, including `\`**, lose their special
+  significance within a bracket expression, with the exception of these and some
+  combinations using `[`.
 
 Within a bracket expression, a collating element enclosed in `[.` and `.]`
 stands for the sequence of characters of that collating element. The sequence is
