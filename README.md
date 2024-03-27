@@ -7,3 +7,8 @@ in an easier to read format.
 
 A regular expression is one or more nonempty branches, separated by a `|`. It
 matches anything that matches one of the branches.
+
+### Branch
+
+A branch is one or more pieces, concetenated. It matches for the first, followed
+by a match for the second and so on.
